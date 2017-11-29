@@ -8,12 +8,10 @@
     android:orientation="vertical"
     tools:context="com.example.alex_pc.testprojectformotmom.MainActivity">
 
-    <fragment
-        android:id="@+id/listFragment"
-        android:name="com.example.alex_pc.testprojectformotmom.CardList"
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@android:layout/list_content">
-    </fragment>
-
+        android:id="@+id/recycler_view"
+        />
 </LinearLayout>

@@ -1,87 +1,55 @@
 package com.example.alex_pc.testprojectformotmom;
 
-/**
- * Created by nort3 on 26.11.2017.
- */
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class OfficesList {
 
-    private class Addresses{
-        private String address;
-        private double latitude;
-        private double longitude;
-        private String schedule;
-
-        public Addresses(String address, double latitude, double longitude, String schedule) {
-            this.address = address;
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.schedule = schedule;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public double getLatitude() {
-            return latitude;
-        }
-
-        public void setLatitude(double latitude) {
-            this.latitude = latitude;
-        }
-
-        public double getLongitude() {
-            return longitude;
-        }
-
-        public void setLongitude(double longitude) {
-            this.longitude = longitude;
-        }
-
-        public String getSchedule() {
-            return schedule;
-        }
-
-        public void setSchedule(String schedule) {
-            this.schedule = schedule;
-        }
-    }
-    private Addresses address;
-    private int id;
-    private String image;
+    @SerializedName("addresses")
+    @Expose
+    private List<Address> addresses = null;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("imageHref")
+    @Expose
+    private String imageHref;
+    @SerializedName("longDescription")
+    @Expose
     private String longDescription;
+    @SerializedName("name")
+    @Expose
     private String name;
-    private float raing;
+    @SerializedName("rating")
+    @Expose
+    private float rating;
+    @SerializedName("shortDescription")
+    @Expose
     private String shortDescription;
 
-    public OfficesList(int id, String image, String longDescription, String name, float raing, String shortDescription) {
-        this.id = id;
-        this.image = image;
-        this.longDescription = longDescription;
-        this.name = name;
-        this.raing = raing;
-        this.shortDescription = shortDescription;
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
-    public int getId() {
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageHref() {
+        return imageHref;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageHref(String imageHref) {
+        this.imageHref = imageHref;
     }
 
     public String getLongDescription() {
@@ -100,12 +68,12 @@ public class OfficesList {
         this.name = name;
     }
 
-    public float getRaing() {
-        return raing;
+    public float getRating() {
+        return rating;
     }
 
-    public void setRaing(float raing) {
-        this.raing = raing;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     public String getShortDescription() {
@@ -114,5 +82,18 @@ public class OfficesList {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "OfficesList{" +
+                "addresses=" + addresses +
+                ", id='" + id + '\'' +
+                ", imageHref='" + imageHref + '\'' +
+                ", longDescription='" + longDescription + '\'' +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                ", shortDescription='" + shortDescription + '\'' +
+                '}';
     }
 }

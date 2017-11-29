@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestProjectForMotmom</string>
+    <string name="noDescription">(нет описания)</string>
 </resources>

@@ -1,23 +1,28 @@
 package com.example.alex_pc.testprojectformotmom;
 
 
-import android.net.Uri;
+import android.content.Intent;
+import android.view.View;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RemindViewHolder> {
 
     private List<OfficesList> data;
+    View view;
 
-    public RecyclerAdapter(List<OfficesList> data) {
+
+
+
+    public RecyclerAdapter(List<OfficesList> data, View v) {
         this.data = data;
     }
 
@@ -25,15 +30,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Remind
     public RemindViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_ragment, parent,false);
         return new RemindViewHolder(view);
+
+
     }
 
     @Override
     public void onBindViewHolder(RemindViewHolder holder, int position) {
-        holder.itemImage.setImageURI(Uri.parse(data.get(position).getImage()));
+        holder.currentItem = position;
+        new ImageLoadTask(data.get(position).getImageHref(), holder.itemImage).execute();
         holder.itemName.setText(data.get(position).getName());
-        holder.itemShortDescription.setText(data.get(position).getShortDescription());
-        holder.itemRating.setRating(data.get(position).getRaing());
+        if(data.get(position).getShortDescription() != "") holder.itemShortDescription.setText(data.get(position).getShortDescription());
+        holder.itemRating.setRating(data.get(position).getRating());
     }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -53,7 +64,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Remind
             itemName = (TextView)itemView.findViewById(R.id.item_name);
             itemShortDescription = (TextView)itemView.findViewById(R.id.item_shortDescription);
             itemRating = (RatingBar)itemView.findViewById(R.id.item_rating);
+
+            view = itemView;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), OfficeLongDescription.class);
+                    intent.putExtra("position", currentItem);
+                    startActivity(v.getContext(), intent, null);
+                }
+            });
         }
 
     }
+
+
 }
